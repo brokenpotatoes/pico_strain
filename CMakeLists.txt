@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 #add_compile_options(-Werror -Wall -Wextra -Wnull-dereference)
-add_executable(pico_strain pico_strain.c )
+add_executable(pico_strain pico_strain.c ads131m0x.c hal.c)
 
 
 
@@ -44,11 +44,9 @@ pico_set_program_version(pico_strain "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
 
-
-add_subdirectory(ADS131)
 # Add the standard library to the build
 target_link_libraries(pico_strain
-        pico_stdlib ADS131)
+        pico_stdlib)
 
 pico_enable_stdio_uart(pico_strain 0)
 pico_enable_stdio_usb(pico_strain 1)

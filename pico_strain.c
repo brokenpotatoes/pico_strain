@@ -6,11 +6,11 @@
 
 #include "pico/stdlib.h"
 #include <stdio.h>
-#include "ADS131/ads131m0x.h"
+#include "ads131m0x.h"
+#include "hal.h"
 #ifndef LED_DELAY_MS
 #define LED_DELAY_MS 250
 #endif
-
 // Initialize the GPIO for the LED
 void pico_led_init(void) {
 gpio_init(25);
@@ -23,17 +23,17 @@ gpio_set_dir(15, GPIO_OUT);
 void pico_set_led(bool led_on) {
     gpio_put(25, led_on);
 }
-
+adc_channel_data data;
 int main() {
     stdio_init_all();
     pico_led_init();
     adcStartup();
     while (true) {
-        printf("Revision ID in HEX: 0x%02X\n", REVISION_ID);
-        gpio_put(15, true);
-        pico_set_led(true);
-        sleep_ms(LED_DELAY_MS);
-        pico_set_led(false);
-        sleep_ms(LED_DELAY_MS);
+        if(flag_nDRDY_INTERRUPT){
+            flag_nDRDY_INTERRUPT=false;
+            readData(&data);
+            printf("%d,%d,%d,%d,%d,%d,%d,%d\n",data.channel0,data.channel1,data.channel2,data.channel3,
+                data.channel4,data.channel5,data.channel6,data.channel7);
+        }
     }
 }

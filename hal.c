@@ -41,7 +41,7 @@
 //****************************************************************************
 
 // Flag to indicate if a /DRDY interrupt has occurred
-static volatile bool flag_nDRDY_INTERRUPT = false;
+volatile bool flag_nDRDY_INTERRUPT = false;
 
 
 
@@ -414,7 +414,7 @@ void initSPI(void)
     //
     // Enable clocks to GPIO Port Q and configure pins as SSI
     //
-    spi_init(spi1, 5 * 1000 * 1000); // 5 MHz
+    spi_init(spi1, 25e6); // 25 MHz 
     spi_set_format(spi1, 8, 0, 1, SPI_MSB_FIRST);
     gpio_set_function(MISO_PIN, GPIO_FUNC_SPI);
     gpio_set_function(MOSI_PIN, GPIO_FUNC_SPI);

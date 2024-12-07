@@ -110,5 +110,8 @@ void    setSYNC_RESET(const bool state);
 #define LOW                 ((bool) false)
 
 
+// Flag to indicate if a /DRDY interrupt has occurred
+extern volatile bool flag_nDRDY_INTERRUPT;
+
 
 #endif /* INTERFACE_H_ */
