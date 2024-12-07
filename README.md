@@ -44,7 +44,7 @@ This system was designed for **CLES-FACIL**, the rocket club at **INSA Lyon**, t
 
 ## TODO List
 
-- [ ] Get basic functionality working  
+- [x] Get basic functionality working  
 - [ ] Make a CLI-style basic interface  
 - [ ] Implement a protocol for RS-485  
 - [ ] Measure power supply noise (currently unable due to broken oscilloscope probe)  
